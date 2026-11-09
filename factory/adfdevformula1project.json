@@ -1,0 +1,15 @@
+{
+	"name": "adfdevformula1project",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c090d907-61b8-4e54-8609-6fa9bc347a75",
+		"tenantId": "5ca76f2a-168c-45c0-bda5-736e2829a4ce"
+	}
+}

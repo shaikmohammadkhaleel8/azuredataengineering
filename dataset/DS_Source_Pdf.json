@@ -1,0 +1,27 @@
+{
+	"name": "DS_Source_Pdf",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Source_Pdf",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"fileSystem": "inputmultipleformats"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

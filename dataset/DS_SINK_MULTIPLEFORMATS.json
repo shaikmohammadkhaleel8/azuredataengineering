@@ -1,0 +1,41 @@
+{
+	"name": "DS_SINK_MULTIPLEFORMATS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SINK_MULTIPLEFORMATS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"fileSystem": "outputmultiple"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SIC_Code",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

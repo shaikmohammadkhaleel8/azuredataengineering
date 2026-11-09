@@ -1,0 +1,286 @@
+{
+	"name": "PL_Dynamic_MultiFormat_File_Copy",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get_Metadata_From_ADLS_MultipleFormat_Source",
+				"description": "this activity will fetch the multiple format files from ADLS Source",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DS_Dynamic_Source_Multiple_Formats",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "BinaryReadSettings"
+					}
+				}
+			},
+			{
+				"name": "For_Each_Item",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get_Metadata_From_ADLS_MultipleFormat_Source",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get_Metadata_From_ADLS_MultipleFormat_Source').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Switch1",
+							"type": "Switch",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@toLower(last(split(item().name,'.')))",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "csv",
+										"activities": [
+											{
+												"name": "copy_csv",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"storeSettings": {
+															"type": "AzureBlobFSReadSettings",
+															"recursive": true,
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														}
+													},
+													"sink": {
+														"type": "DelimitedTextSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "DelimitedTextWriteSettings",
+															"quoteAllText": true,
+															"fileExtension": ".txt"
+														}
+													},
+													"enableStaging": false,
+													"translator": {
+														"type": "TabularTranslator",
+														"typeConversion": true,
+														"typeConversionSettings": {
+															"allowDataTruncation": true,
+															"treatBooleanAsNumber": false
+														}
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "DS_Source_Copy_ADLS",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_SINK_MULTIPLEFORMATS",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "pdf",
+										"activities": [
+											{
+												"name": "Copy data Pdf",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "BinarySource",
+														"storeSettings": {
+															"type": "AzureBlobFSReadSettings",
+															"recursive": true
+														},
+														"formatSettings": {
+															"type": "BinaryReadSettings"
+														}
+													},
+													"sink": {
+														"type": "BinarySink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														}
+													},
+													"enableStaging": false
+												},
+												"inputs": [
+													{
+														"referenceName": "DS_Source_Pdf",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_SINK_PDF",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "parquet",
+										"activities": [
+											{
+												"name": "Copy_data_parquet",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "ParquetSource",
+														"storeSettings": {
+															"type": "AzureBlobFSReadSettings",
+															"recursive": true,
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "ParquetReadSettings"
+														}
+													},
+													"sink": {
+														"type": "ParquetSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "ParquetWriteSettings"
+														}
+													},
+													"enableStaging": false,
+													"translator": {
+														"type": "TabularTranslator",
+														"typeConversion": true,
+														"typeConversionSettings": {
+															"allowDataTruncation": true,
+															"treatBooleanAsNumber": false
+														}
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "DS_SOURCE_PARQUET",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "DS_SINK_PARQUET",
+														"type": "DatasetReference",
+														"parameters": {
+															"FileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-11-08T06:21:44Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
