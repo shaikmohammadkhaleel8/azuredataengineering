@@ -1,0 +1,123 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfdevformula1project"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"Azuredatalakestorageexcelformat_accountKey": {
+			"value": ""
+		},
+		"LS_DESTINATION_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_Dynamic_Source_Multiple_Formats_accountKey": {
+			"value": ""
+		},
+		"LS_MULTIPLE_CSV_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_DYNAMIC_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_MULTIPLEFORMATS_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_MULTIPLEPARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_MULTIPLE_CSV_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_PDF_accountKey": {
+			"value": ""
+		},
+		"LS_SOURCELS_CSV_accountKey": {
+			"value": ""
+		},
+		"LS_SOURCE_CSV_accountKey": {
+			"value": ""
+		},
+		"LS_SOURCE_MULTIPLECSV_accountKey": {
+			"value": ""
+		},
+		"LS_SOURCE_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SRC_SQLSERVER_ADLS_password": {
+			"value": ""
+		},
+		"LS_Source_Copy_ADLS_accountKey": {
+			"value": ""
+		},
+		"LS_Source_Pdf_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://adlsformulaupload.dfs.core.windows.net/"
+		},
+		"Azuredatalakestorageexcelformat_properties_typeProperties_url": {
+			"value": "https://adlsformulaupload.dfs.core.windows.net/"
+		},
+		"LS_DESTINATION_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevsinkformula007.dfs.core.windows.net/"
+		},
+		"LS_Dynamic_Source_Multiple_Formats_properties_typeProperties_url": {
+			"value": "https://adlsdevsourceformula007.dfs.core.windows.net/"
+		},
+		"LS_MULTIPLE_CSV_properties_typeProperties_url": {
+			"value": "https://adlsdevsourceformula007.dfs.core.windows.net/"
+		},
+		"LS_SINK_DYNAMIC_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevsinkformula007.dfs.core.windows.net/"
+		},
+		"LS_SINK_MULTIPLEFORMATS_properties_typeProperties_url": {
+			"value": "https://adlsdevsinkformula007.dfs.core.windows.net/"
+		},
+		"LS_SINK_MULTIPLEPARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevsinkformula007.dfs.core.windows.net/"
+		},
+		"LS_SINK_MULTIPLE_CSV_properties_typeProperties_url": {
+			"value": "https://adlsdevsinkformula007.dfs.core.windows.net/"
+		},
+		"LS_SINK_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevsinkformula007.dfs.core.windows.net/"
+		},
+		"LS_SINK_PDF_properties_typeProperties_url": {
+			"value": "https://adlsdevsinkformula007.dfs.core.windows.net/"
+		},
+		"LS_SOURCELS_CSV_properties_typeProperties_url": {
+			"value": "https://adlsdevsourceformula007.dfs.core.windows.net/"
+		},
+		"LS_SOURCE_CSV_properties_typeProperties_url": {
+			"value": "https://adlsdevsourceformula007.dfs.core.windows.net/"
+		},
+		"LS_SOURCE_MULTIPLECSV_properties_typeProperties_url": {
+			"value": "https://adlsdevsourceformula007.dfs.core.windows.net/"
+		},
+		"LS_SOURCE_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevsourceformula007.dfs.core.windows.net/"
+		},
+		"LS_SRC_SQLSERVER_ADLS_properties_typeProperties_server": {
+			"value": "DESKTOP-R96BLRE\\SQLEXPRESS"
+		},
+		"LS_SRC_SQLSERVER_ADLS_properties_typeProperties_database": {
+			"value": "KIMIRAIKKONEN"
+		},
+		"LS_SRC_SQLSERVER_ADLS_properties_typeProperties_userName": {
+			"value": "DESKTOP-R96BLRE\\Rizwana Khaleel"
+		},
+		"LS_Source_Copy_ADLS_properties_typeProperties_url": {
+			"value": "https://adlsdevsourceformula007.dfs.core.windows.net/"
+		},
+		"LS_Source_Pdf_properties_typeProperties_url": {
+			"value": "https://adlsdevsourceformula007.dfs.core.windows.net/"
+		}
+	}
+}
